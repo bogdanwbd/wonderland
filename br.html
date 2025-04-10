@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LocalStorage Echo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    .entry {
+      margin-bottom: 10px;
+    }
+    .key {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your credentials</h1>
+  <div id="output"></div>
+
+  <script>
+    const output = document.getElementById('output');
+
+    if (localStorage.length === 0) {
+      output.textContent = 'localStorage is empty.';
+    } else {
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+
+        const div = document.createElement('div');
+        div.className = 'entry';
+        div.innerHTML = `<span class="key">${key}</span>: ${value}`;
+        output.appendChild(div);
+      }
+    }
+  </script>
+</body>
+</html>
